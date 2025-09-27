@@ -1,0 +1,93 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My To do List
+{% endblock %}
+
+{% block content %}
+<!-- 
+<p><a href="/">HOME</a></p> -->
+
+    {% load static %}
+
+    {% block styles %}
+     <style>
+   
+                table{
+            
+                    color: white;
+                    width: 60%;
+                    border-collapse: collapse;
+                    text-align: center;
+                
+                }
+                th, td {
+                    border: 1px solid blanchedalmond;
+                    padding: 10px;
+                    background-color:black;
+                }
+                .update_btn{
+                    background-color:blue;
+                }
+
+                .delete_btn{
+                    background-color: red;  
+                }
+
+                a{
+                    text-decoration: none;
+                    color:black
+                }
+
+                button{
+                    border-radius: 5px;
+                    border: none;
+                    padding: 10px;
+                }
+
+                .add_btn{
+                    background-color: green;
+                }
+
+                p{
+                    color: brown;
+                }
+                     
+     </style>
+
+     {% endblock %}
+     <div class="container"></div>
+
+    <table>
+        <tr>
+        
+            <th>No.</th>
+            <th>Date</th>
+            <th>Task</th>
+            <th>Status</th>
+            
+      
+        </tr>
+        {% for x in mymembers %}
+        
+          
+        <tr>
+            <td>xeyy</td>
+            <td> x.created_date</td>
+            <td>x.task</td>
+            <td>x.status</td>
+            <td>
+                
+            </td>
+    
+       
+        </tr>
+        {% endfor %}
+
+        
+    </table>
+    <button class="dltcnfrm_btn"><a href="update_member/{{x.id }}">Confirm</a></button>
+    <button class="dltcnfrm_btn"><a href="update_member/{{x.id }}">Cancel</a></button>
+
+{% endblock %}    
+    
