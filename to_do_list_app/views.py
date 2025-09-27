@@ -1,48 +1,53 @@
 from django.shortcuts import render
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 from .models import Table
 from django.http import HttpResponse
 
 
 # Create your views here.
 def index(request):
-    mymembers = Table.objects.all().values()
-    return render(request,'index.html',{"mymembers": mymembers})
+    mytasks = Table.objects.all().values()
+    return render(request,'index.html',{"mytasks": mytasks})
+
 def add(request):
     return render(request,'add.html')
 def add_tasks(request):
-    ttitle = request.POST['task']
-    tstatus = request.POST['status']
-    tstatus = request.POST.get('status','pending')
-    x=Table(task=ttitle,status=tstatus)
+    task = request.POST['task']
+    status = request.POST['status']
+    status = request.POST.get('status','pending')
+    due_date = request.POST.get("due_date")
+    x=Table(task=task,status=status,due_date=due_date)
     x.save()
     return redirect('index')
-
 
 def update(request):
     return render(request,'update.html')
 
-def update_member(request, id):
-    member = Table.objects.get (id=id)
+def update_tasks(request, id):
+    tasks = Table.objects.get (id=id)
 
     if request.method == "POST":
-        member.task = request.POST.get("task")
-        member.status = request.POST.get("status")
-        # member.status = request.POST.get("status")
-        # member.actions = request.POST.get("")
-        member.save()
+        tasks.task = request.POST.get("task")
+        tasks.status = request.POST.get("status")
+        tasks.due_date = request.POST.get("due_date")
+        tasks.save()
         return redirect("index")
-    return render(request, "update.html", {"member": member})
+    return render(request, "update.html", {"tasks": tasks})
 
-    # if GET, show the form with prefilled values
-   
-def delete(request):
-    return render(request,'delete.html')
 
-def delete_member(request,id):
-    member = Table.objects.get (id=id)
-    member.delete()
-    return redirect("index")
+def delete(request, id):
+    task = get_object_or_404(Table, id=id)
+    if request.method == "POST":
+        task.delete()
+        return redirect("index")
+    return render(request, "delete.html", {"mytasks": task}) 
+
+def delete_tasks(request,id):
+    tasks = Table.objects.get (id=id)
+    tasks.delete()
+    return redirect("delete")
+
+
 
 
 

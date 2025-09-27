@@ -6,29 +6,73 @@
 
 {% block content %}
 
- <p><a href="/">HOME</a></p>
+    {% load static %}
 
-<h1>Update</h1>
-   <form action = "{% url 'update_member' member.id %}" method="post">
-    {% csrf_token %}
-
-     <label>Task:</label>
-     <input type = "text" name="task" value="{{member.task}}">
-
-     <label>Status</label>
-     <select name="status" id="status">
-
-         <option value="pending" {% if member.status == "pending" %}selected{% endif %}>Pending</option>
-         <option value="completed" {% if member.status == "completed" %}selected{% endif %}>Completed</option>
-
-        <!-- <option value="pending">pending</option>
-        <option value="completed">completed</option> -->
-     </select>
-
-     <button type="submit">submit</button>
-
-   </form>
+    {% block styles %}
+     <style>
    
+                table{
+            
+                    color: white;
+                    width: 60%;
+                    border-collapse: collapse;
+                    text-align: center;
+                
+                }
+                th, td {
+                    border: 1px solid blanchedalmond;
+                    padding: 10px;
+                    background-color:black;
+                }
+         
+
+                a{
+                    text-decoration: none;
+                    color:black
+                }
+
+                button{
+                    border-radius: 5px;
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+                }
+
+                .update_btn{
+                    background-color:blue
+                }
+
+                     
+     </style>
+
+     {% endblock %}
+
+    <p><a href="/">HOME</a></p>
+
+    <h1>Update Task</h1>
+      <form action = "{% url 'update_tasks' tasks.id %}" method="post">
+        {% csrf_token %}
+
+        <label>Task:</label>
+        <input type = "text" name="task" value="{{tasks.task}}">
+        <br><br>
+
+        <label>Status</label>
+        <select name="status" id="status">
+            <option value="pending" {% if member.status == "pending" %}selected{% endif %}>Pending</option>
+            <option value="completed" {% if member.status == "completed" %}selected{% endif %}>Completed</option>
+        </select>
+        <br><br>
+
+        <label>Due Date:</label>
+        <input type = "date" name="duedate" value="{{tasks.due_date}}">
+        <br><br>
+
+        <button class="update_btn" type="submit">Update</button>
+        <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
+
+      </form>
+      
 
 
 {% endblock %}

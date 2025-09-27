@@ -49,7 +49,7 @@
      </style>
 
      {% endblock %}
-     <div class="container"></div>
+   
     <h1>To Do List</h1>
 
     <table>
@@ -59,29 +59,32 @@
             <th>Date</th>
             <th>Task</th>
             <th>Status</th>
+            <th>Due Date</th>
             <th>Actions</th>
       
         </tr>
-        {% for x in mymembers %}
+        {% for x in mytasks %}
         
           
         <tr>
+
             <td>{{ x.id }}</td>
             <td>{{ x.created_date }}</td>
             <td>{{ x.task }}</td>
             <td>{{ x.status}}</td>
+            <td>{{ x.due_date}}</td>
+
             <td>
-                <button class="update_btn"><a href="update_member/{{x.id }}">Update</a></button>
-                <button class="delete_btn"><a href="delete/">Delete</a></button>
+                <button class="update_btn"><a href="update_tasks/{{x.id }}">Update</a></button>
+                <button class="delete_btn"><a href="delete/{{x.id}}">Delete</a></button>
             </td>
     
-       
         </tr>
         {% endfor %}
 
-        
     </table>
     
     <button class="add_btn"><a href="/add">+ Add Tasks</a></button>
+
 </body>
 </html>

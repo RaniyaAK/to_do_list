@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<!-- 
-<p><a href="/">HOME</a></p> -->
+
 
     {% load static %}
 
@@ -26,9 +25,7 @@
                     padding: 10px;
                     background-color:black;
                 }
-                .update_btn{
-                    background-color:blue;
-                }
+             
 
                 .delete_btn{
                     background-color: red;  
@@ -43,51 +40,67 @@
                     border-radius: 5px;
                     border: none;
                     padding: 10px;
+                    cursor: pointer;
                 }
 
-                .add_btn{
-                    background-color: green;
+                .cnfrm_dlt_btn{
+                    background-color: red
+                }
+                .delete_box{
+                    border: solid;
+                    max-width: 400px;
+                    text-align: center;
+                    margin-top: 30px;
+                    border-width: thin;
                 }
 
-                p{
-                    color: brown;
+                .delete{
+                    text-align: center;
                 }
-                     
+                            
      </style>
 
      {% endblock %}
-     <div class="container"></div>
+   
+     <p><a href="/">Home</a></p>
 
-    <table>
-        <tr>
-        
-            <th>No.</th>
-            <th>Date</th>
-            <th>Task</th>
-            <th>Status</th>
+        <div class="container">
+
+                <table>
+
+                    <tr>
+                        <th>No.</th>
+                        <th>Date</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>{{mytasks.id}}</td>
+                        <td>{{mytasks.created_date}}</td>
+                        <td>{{mytasks.task}}</td>
+                        <td>{{mytasks.status}}</td>
+                        <td>{{mytasks.due_date}}</td>
+                    </tr>
+
+                </table>
+
+                <div class="delete_box">
+
+                    <p>Are you sure want to delete this item?</p>
+
+                    <form method="post" action="{% url 'delete' mytasks.id %}">
+                    {% csrf_token %}
+                        <button type="submit" class="cnfrm_dlt_btn">Confirm</button>
+                        <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
+                    </form><br>
+
+                </div>
             
-      
-        </tr>
-        {% for x in mymembers %}
-        
-          
-        <tr>
-            <td>xeyy</td>
-            <td> x.created_date</td>
-            <td>x.task</td>
-            <td>x.status</td>
-            <td>
-                
-            </td>
-    
-       
-        </tr>
-        {% endfor %}
+        </div>
+   
 
-        
-    </table>
-    <button class="dltcnfrm_btn"><a href="update_member/{{x.id }}">Confirm</a></button>
-    <button class="dltcnfrm_btn"><a href="update_member/{{x.id }}">Cancel</a></button>
 
-{% endblock %}    
-    
+{% endblock %}

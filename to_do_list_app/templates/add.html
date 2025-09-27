@@ -5,28 +5,71 @@
 {% endblock %}
 
 {% block content %}
+{% load static %}
 
- <p><a href="/">Home</a></p>
+{% block styles %}
+    <style>
+                              
+            table{
+                    color: white;
+                    width: 60%;
+                    border-collapse: collapse;
+                    text-align: center;
+            }
 
-<h1>Add Tasks</h1>
-   <form action = "{% url 'add_task' %}" method="post">
-    {% csrf_token %}
-     <label>Task:</label>
-     <input type ="text" name="task">
+            th, td {
+                                                  border: 1px solid blanchedalmond;
+                                                  padding: 10px;
+                                                  background-color:black;
+            }
+                                             
+            a{
+                                                  text-decoration: none;
+                                                  color:black;
+            }
+            button{
+                    border-radius: 5px;
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+            }
 
-     <label>Status</label>
-     <select name="status" id="">
-      <button><option value="pending">pending</option></button>
-      <option value="completed">completed</option>
-     </select>
-     
-<!-- 
-     <label>Duration:</label>
-     <input type ="number" name="duration"> -->
+            .add_btn{
+                    background-color:green
+            }
+                                         
+    </style>
 
-     <button type="submit">submit</button>
-   </form>
+<!-- {% endblock %} -->
+
+    <p><a href="/">Home</a></p>
+
+    <div class="add_box">
+        <h1>Add Tasks</h1>
+          <form action = "{% url 'add_tasks' %}" method="post">
+            {% csrf_token %}
+
+            <label>Task:</label>
+            <input type ="text" name="task">
+            <br><br>
+
+            <label>Status:</label>
+            <select name="status" id="">
+              <button><option value="pending">pending</option></button>
+              <option value="completed">completed</option>
+            </select>
+            <br><br>
+
+            
+            <label>Due Date:</label>
+            <input type ="date" name="due_date">
+            <br><br>
+            
+            <button class="add_btn" type="submit">Add</button>
+            <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
+
+          </form>
+      </div>
    
   
-
 {% endblock %}
