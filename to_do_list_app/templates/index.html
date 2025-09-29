@@ -1,113 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    {% load static %}
+{% extends "master.html" %}
+{% load static %}
 
-    {% block styles %}
-     <style>
-   
-                table{
-            
-                    color: white;
-                    width: 60%;
-                    border-collapse: collapse;
-                    text-align: center;
-                
-                }
-                th, td {
-                    border: 1px solid blanchedalmond;
-                    padding: 10px;
-                    background-color:black;
-                }
-                .update_btn{
-                    background-color:blue;
-                }
-                .delete_btn{
-                    background-color: red;
-                    
-                }
-                a{
-                    text-decoration: none;
-                    color: white;
-                }
-                button{
-                    border-radius: 5px;
-                    border: none;
-                    padding: 10px;
+{% block title %}To Do List{% endblock %}
 
-                }
-                .add_btn{
-                    background-color: green;
-                }
-                .pending_btn{
-                    background-color: rgb(255, 255, 8);
+{% block content %}
 
-                }
-                     
-     </style>
+<!-- Theme toggle button (only here) -->
+<button id="themeToggle" class="theme-toggle">Dark Mode</button>
 
-     {% endblock %}
-   
-    <h1>To Do List</h1>
+<h1>To Do List</h1>
 
-    <table>
-        <tr>
-        
-            <th>No.</th>
-            <th>Date</th>
-            <th>Task</th>
-            <th>Status</th>
-            <th>Due Date</th>
-            <th>Actions</th>
-      
-        </tr>
-        {% for x in mytasks %}
-        
-          
-        <tr>
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Date</th>
+        <th>Task</th>
+        <th>Status</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for x in mytasks %}
+    <tr>
+        <td>{{ x.id }}</td>
+        <td>{{ x.created_date }}</td>
+        <td>{{ x.task }}</td>
 
-            <td>{{ x.id }}</td>
-            <td>{{ x.created_date }}</td>
-            <td>{{ x.task }}</td>
-            
-            {% if x.status == "pending" %}
-            <td style="background-color:#d3ba2d;  color: black;">{{ x.status }}
-            {% else %}
-            <td style="background-color:green; color: black;">{{ x.status }}
-            {% endif %}
-            </td>
+        {% if x.status == "pending" %}
+        <td class="pending_btn">{{ x.status }}</td>
+        {% else %}
+        <td class="completed_btn">{{ x.status }}</td>
+        {% endif %}
 
-            <td>
-                {{ x.due_date }}
-                {% if x.status != "completed" %}
+        <td>
+            {{ x.due_date }}
+            {% if x.status != "completed" %}
                 {% if x.due_date|date:"Y-m-d" == today|date:"Y-m-d" %}
-                    <span style="color: orange;">Due Today</span>
+                    <span class="due-today">Due Today</span>
                 {% elif x.due_date|date:"Y-m-d" < today|date:"Y-m-d" %}
-                    <span style="color: red;">Overdue</span>
+                    <span class="overdue">Overdue</span>
                 {% else %}
-                    <span style="color: green;">Pending</span>
+                    <span class="pending">Pending</span>
                 {% endif %}
-                {% endif %}
-            </td>
+            {% endif %}
+        </td>
 
+        <td>
+            <button class="update_btn"><a href="update_tasks/{{x.id}}">Update</a></button>
+            <button class="delete_btn"><a href="delete/{{x.id}}">Delete</a></button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 
-            <td>
-                <button class="update_btn"><a href="update_tasks/{{x.id }}">Update</a></button>
-                <button class="delete_btn"><a href="delete/{{x.id}}">Delete</a></button>
-            </td>
-    
-        </tr>
-        {% endfor %}
+<button class="add_btn"><a href="/add">+ Add Tasks</a></button>
 
-    </table>
-    
-    <button class="add_btn"><a href="/add">+ Add Tasks</a></button>
+<!-- Theme toggle JS -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const body = document.body;
+    const toggleButton = document.getElementById('themeToggle');
 
-</body>
-</html>
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme){
+        body.classList.remove('light-theme','dark-theme');
+        body.classList.add(savedTheme);
+        toggleButton.textContent = savedTheme === 'dark-theme' ? 'Light Mode' : 'Dark Mode';
+    }
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        body.classList.toggle('light-theme');
+
+        const currentTheme = body.classList.contains('dark-theme') ? 'dark-theme' : 'light-theme';
+        localStorage.setItem('theme', currentTheme);
+
+        toggleButton.textContent = currentTheme === 'dark-theme' ? 'Light Mode' : 'Dark Mode';
+    });
+});
+</script>
+
+{% endblock %}

@@ -1,15 +1,30 @@
-{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>{% block title %}{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body class="light-theme">
 
-{% block content %}
-{% endblock %}
+{% block content %}{% endblock %}
+
+<!-- Apply saved theme automatically for all pages -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme');
+
+    if(savedTheme){
+        body.classList.remove('light-theme', 'dark-theme');
+        body.classList.add(savedTheme);
+    }
+});
+</script>
 
 </body>
+</html>
+
 </html>

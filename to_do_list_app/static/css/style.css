@@ -1,57 +1,98 @@
+/* ---------------- Light Theme ---------------- */
+body.light-theme {
+    background-color: white;
+    color: black;
+}
 
-    table{
+/* Table in light theme */
+body.light-theme table {
+    color: black;
+    width: 60%;
+    border-collapse: collapse;
+    text-align: center;
+}
 
-        color: white;
-        width: 60%;
-        border-collapse: collapse;
-        text-align: center;
+body.light-theme th, body.light-theme td {
+    border: 1px solid black; /* visible in light mode */
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: black;
+}
 
-    }
-    th, td {
-        border: 1px solid blanchedalmond;
-        padding: 10px;
-        background-color:black;
-    }
+/* Buttons in light theme */
+body.light-theme .update_btn { background-color: blue; color: white; }
+body.light-theme .delete_btn { background-color: red; color: white; }
+body.light-theme .cnfrm_dlt_btn { background-color: red; color: white; }
+body.light-theme .add_btn { background-color: green; color: white; }
+body.light-theme .cancel_btn { background-color: #7f8c8d; color: white; }
 
+/* Status cells */
+body.light-theme .pending_btn { background-color: rgb(255, 255, 8); color: black; }
+body.light-theme .completed_btn { background-color: green; color: white; }
 
-    .delete_btn{
-        background-color: red;  
-    }
+/* Due date labels */
+body.light-theme .due-today { color: orange; }
+body.light-theme .overdue { color: red; }
+body.light-theme .pending { color: green; }
 
-    a{
-        text-decoration: none;
-        color:black
-    }
+/* ---------------- Dark Theme ---------------- */
+body.dark-theme {
+    background-color: black;
+    color: white;
+}
 
-    button{
-        border-radius: 5px;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-    }
+body.dark-theme table {
+    color: white;
+    width: 60%;
+    border-collapse: collapse;
+    text-align: center;
+}
 
-    .cnfrm_dlt_btn{
-        background-color: red
-    }
-    .delete_box{
-        border: solid;
-        max-width: 400px;
-        text-align: center;
-        margin-top: 30px;
-        border-width: thin;
-    }
+body.dark-theme th, body.dark-theme td {
+    border: 1px solid blanchedalmond;
+    padding: 10px;
+    background-color: #121212;
+    color: white;
+}
 
-    .delete{
-        text-align: center;
-    }
+/* Buttons in dark theme */
+body.dark-theme .update_btn { background-color: blue; color: white; }
+body.dark-theme .delete_btn { background-color: red; color: white; }
+body.dark-theme .cnfrm_dlt_btn { background-color: red; color: white; }
+body.dark-theme .add_btn { background-color: green; color: white; }
+body.dark-theme .cancel_btn { background-color: #7f8c8d; color: white; }
 
-    .update_btn{
-        background-color:blue
-    }
+/* Status cells */
+body.dark-theme .pending_btn { background-color: rgb(255, 255, 8); color: black; }
+body.dark-theme .completed_btn { background-color: green; color: white; }
 
-    .add_btn{
-        background-color:green
-    }
+/* Due date labels */
+body.dark-theme .due-today { color: orange; }
+body.dark-theme .overdue { color: red; }
+body.dark-theme .pending { color: lightgreen; }
 
-                            
-    
+/* Buttons shared */
+button, .btn {
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button a { text-decoration: none; color: inherit; }
+
+/* Theme toggle button (index only) */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}

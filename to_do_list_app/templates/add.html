@@ -1,39 +1,27 @@
 {% extends "master.html" %}
 {% load static %}
 
-{% block title %}
-  My Tennis Club - List of all members
-{% endblock %}
+{% block title %}Add Task{% endblock %}
 
 {% block content %}
+<div class="add_box">
+    <h1>Add Tasks</h1>
+    <form action="{% url 'add_tasks' %}" method="post">
+        {% csrf_token %}
+        <label>Task:</label>
+        <input type="text" name="task" required><br><br>
 
+        <label>Status:</label>
+        <select name="status">
+            <option value="pending">pending</option>
+            <option value="completed">completed</option>
+        </select><br><br>
 
-    <div class="add_box">
-        <h1>Add Tasks</h1>
-          <form action = "{% url 'add_tasks' %}" method="post">
-            {% csrf_token %}
+        <label>Due Date:</label>
+        <input type="date" name="due_date" required min="{{ today|date:'Y-m-d' }}"><br><br>
 
-            <label>Task:</label>
-            <input type ="text" name="task" required>
-            <br><br>
-
-            <label>Status:</label>
-            <select name="status" id="">
-              <option value="pending">pending</option>
-              <option value="completed">completed</option>
-            </select>
-            <br><br>
-
-            
-            <label>Due Date:</label>
-            <input type ="date" name="due_date" required min="{{ today|date:'Y-m-d' }}">
-            <br><br>
-            
-            <button class="add_btn" type="submit">Add</button>
-            <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
-
-          </form>
-      </div>
-   
-  
+        <button class="add_btn" type="submit">Add</button>
+        <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
+    </form>
+</div>
 {% endblock %}
