@@ -1,68 +1,13 @@
 {% extends "master.html" %}
+ {% load static %}
 
 {% block title %}
   My To do List
 {% endblock %}
 
-{% block content %}
-
-
-    {% load static %}
-
-    {% block styles %}
-     <style>
    
-                table{
-            
-                    color: white;
-                    width: 60%;
-                    border-collapse: collapse;
-                    text-align: center;
-                
-                }
-                th, td {
-                    border: 1px solid blanchedalmond;
-                    padding: 10px;
-                    background-color:black;
-                }
-             
-
-                .delete_btn{
-                    background-color: red;  
-                }
-
-                a{
-                    text-decoration: none;
-                    color:black
-                }
-
-                button{
-                    border-radius: 5px;
-                    border: none;
-                    padding: 10px;
-                    cursor: pointer;
-                }
-
-                .cnfrm_dlt_btn{
-                    background-color: red
-                }
-                .delete_box{
-                    border: solid;
-                    max-width: 400px;
-                    text-align: center;
-                    margin-top: 30px;
-                    border-width: thin;
-                }
-
-                .delete{
-                    text-align: center;
-                }
-                            
-     </style>
-
-     {% endblock %}
-   
-     <p><a href="/">Home</a></p>
+     <!-- <p><a href="/">Home</a></p> -->
+      {% block content %}
 
         <div class="container">
 

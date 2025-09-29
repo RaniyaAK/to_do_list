@@ -1,48 +1,12 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block title %}
   My Tennis Club - List of all members
 {% endblock %}
 
 {% block content %}
-{% load static %}
 
-{% block styles %}
-    <style>
-                              
-            table{
-                    color: white;
-                    width: 60%;
-                    border-collapse: collapse;
-                    text-align: center;
-            }
-
-            th, td {
-                                                  border: 1px solid blanchedalmond;
-                                                  padding: 10px;
-                                                  background-color:black;
-            }
-                                             
-            a{
-                                                  text-decoration: none;
-                                                  color:black;
-            }
-            button{
-                    border-radius: 5px;
-                    border: none;
-                    padding: 10px;
-                    cursor: pointer;
-            }
-
-            .add_btn{
-                    background-color:green
-            }
-                                         
-    </style>
-
-<!-- {% endblock %} -->
-
-    <p><a href="/">Home</a></p>
 
     <div class="add_box">
         <h1>Add Tasks</h1>
@@ -50,19 +14,19 @@
             {% csrf_token %}
 
             <label>Task:</label>
-            <input type ="text" name="task">
+            <input type ="text" name="task" required>
             <br><br>
 
             <label>Status:</label>
             <select name="status" id="">
-              <button><option value="pending">pending</option></button>
+              <option value="pending">pending</option>
               <option value="completed">completed</option>
             </select>
             <br><br>
 
             
             <label>Due Date:</label>
-            <input type ="date" name="due_date">
+            <input type ="date" name="due_date" required min="{{ today|date:'Y-m-d' }}">
             <br><br>
             
             <button class="add_btn" type="submit">Add</button>
