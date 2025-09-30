@@ -37,7 +37,7 @@
 
                     <form method="post" action="{% url 'delete' mytasks.id %}">
                     {% csrf_token %}
-                        <button type="submit" class="cnfrm_dlt_btn">Confirm</button>
+                        <button type="submit" class="delete_btn">Confirm</button>
                         <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
                     </form><br>
 

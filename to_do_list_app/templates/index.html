@@ -10,17 +10,20 @@
 
 <h1>To Do List</h1>
 
-<table>
-    <tr>
-        <th>No.</th>
-        <th>Date</th>
-        <th>Task</th>
-        <th>Status</th>
-        <th>Due Date</th>
-        <th>Actions</th>
-    </tr>
+<table id="taskTable">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Date</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for x in mytasks %}
-    <tr>
+    <tr data-id="{{ x.id }}" draggable="true">
         <td>{{ x.id }}</td>
         <td>{{ x.created_date }}</td>
         <td>{{ x.task }}</td>
@@ -50,6 +53,7 @@
         </td>
     </tr>
     {% endfor %}
+    </tbody>
 </table>
 
 <button class="add_btn"><a href="/add">+ Add Tasks</a></button>
@@ -77,6 +81,51 @@ document.addEventListener("DOMContentLoaded", function() {
 
         toggleButton.textContent = currentTheme === 'dark-theme' ? 'Light Mode' : 'Dark Mode';
     });
+});
+</script>
+
+<!-- ✅ Drag & Drop Script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const tbody = document.querySelector("#taskTable tbody");
+    let draggedRow = null;
+
+    tbody.addEventListener("dragstart", (e) => {
+        if (e.target.tagName === "TR") {
+            draggedRow = e.target;
+            e.target.classList.add("dragging");
+        }
+    });
+
+    tbody.addEventListener("dragend", (e) => {
+        if (e.target.tagName === "TR") {
+            e.target.classList.remove("dragging");
+            draggedRow = null;
+        }
+    });
+
+    tbody.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(tbody, e.clientY);
+        if (afterElement == null) {
+            tbody.appendChild(draggedRow);
+        } else {
+            tbody.insertBefore(draggedRow, afterElement);
+        }
+    });
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll("tr[draggable]:not(.dragging)")];
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
 });
 </script>
 

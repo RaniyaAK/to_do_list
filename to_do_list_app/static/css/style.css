@@ -4,7 +4,6 @@ body.light-theme {
     color: black;
 }
 
-/* Table in light theme */
 body.light-theme table {
     color: black;
     width: 60%;
@@ -12,32 +11,47 @@ body.light-theme table {
     text-align: center;
 }
 
-body.light-theme th, body.light-theme td {
-    border: 1px solid black; /* visible in light mode */
+body.light-theme th, body.dark-theme th {
+    background-color: #5d6465; 
+    color: white;
     padding: 10px;
-    background-color: #f0f0f0;
+    text-align: center;
+}
+
+body.light-theme td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fdfdfd;
     color: black;
 }
 
-/* Buttons in light theme */
-body.light-theme .update_btn { background-color: blue; color: white; }
-body.light-theme .delete_btn { background-color: red; color: white; }
-body.light-theme .cnfrm_dlt_btn { background-color: red; color: white; }
-body.light-theme .add_btn { background-color: green; color: white; }
-body.light-theme .cancel_btn { background-color: #7f8c8d; color: white; }
+/* Alternating rows */
+body.light-theme tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+body.light-theme tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Buttons */
+body.light-theme .update_btn { background-color: #2f7aac; color: white; }
+body.light-theme .delete_btn { background-color: #e74c3c; color: white; }
+body.light-theme .delete_btn { background-color: #e74c3c; color: white; }
+body.light-theme .add_btn { background-color:green; color: white; }
+body.light-theme .cancel_btn {  color:black; }
 
 /* Status cells */
-body.light-theme .pending_btn { background-color: rgb(255, 255, 8); color: black; }
-body.light-theme .completed_btn { background-color: green; color: white; }
+body.light-theme .pending_btn { background-color:rgb(169, 169, 45); color: black; }
+body.light-theme .completed_btn { background-color:green; color: white; }
 
 /* Due date labels */
-body.light-theme .due-today { color: orange; }
-body.light-theme .overdue { color: red; }
-body.light-theme .pending { color: green; }
+body.light-theme .due-today { color: #ff9800; }
+body.light-theme .overdue { color:rgb(185, 6, 6); }
+body.light-theme .pending { color:green; }
 
 /* ---------------- Dark Theme ---------------- */
 body.dark-theme {
-    background-color: black;
+    background-color: #121212;
     color: white;
 }
 
@@ -48,28 +62,42 @@ body.dark-theme table {
     text-align: center;
 }
 
-body.dark-theme th, body.dark-theme td {
-    border: 1px solid blanchedalmond;
+body.dark-theme td {
+    border: 1px solid #555;
     padding: 10px;
-    background-color: #121212;
+    background-color: #1c1c1c;
     color: white;
 }
 
-/* Buttons in dark theme */
-body.dark-theme .update_btn { background-color: blue; color: white; }
-body.dark-theme .delete_btn { background-color: red; color: white; }
-body.dark-theme .cnfrm_dlt_btn { background-color: red; color: white; }
-body.dark-theme .add_btn { background-color: green; color: white; }
-body.dark-theme .cancel_btn { background-color: #7f8c8d; color: white; }
+/* Alternating rows */
+body.dark-theme tbody tr:nth-child(odd) {
+    background-color: #1e1e1e;
+}
+body.dark-theme tbody tr:nth-child(even) {
+    background-color: #232323;
+}
+
+/* Buttons */
+body.dark-theme .update_btn { background-color: #2f7aac; color: white; }
+body.dark-theme .delete_btn { background-color:rgb(185, 6, 6); color: white; }
+body.dark-theme .delete_btn { background-color:rgb(185, 6, 6); color: white; }
+body.dark-theme .add_btn { background-color:rgb(9, 91, 9); color: white; }
+body.dark-theme .cancel_btn {color:black; }
 
 /* Status cells */
-body.dark-theme .pending_btn { background-color: rgb(255, 255, 8); color: black; }
-body.dark-theme .completed_btn { background-color: green; color: white; }
+body.dark-theme .pending_btn { background-color:rgb(169, 169, 45); color: black; }
+body.dark-theme .completed_btn { background-color:rgb(9, 91, 9); color: white; }
 
 /* Due date labels */
-body.dark-theme .due-today { color: orange; }
-body.dark-theme .overdue { color: red; }
-body.dark-theme .pending { color: lightgreen; }
+body.dark-theme .due-today { color: #ff9800; }
+body.dark-theme .overdue { color:rgb(185, 6, 6); }
+body.dark-theme .pending { color:rgb(9, 91, 9); }
+
+/* Drag highlight */
+tr.dragging {
+    opacity: 0.7;
+    background-color:rgb(169, 169, 45); /* soft yellow highlight */
+}
 
 /* Buttons shared */
 button, .btn {
@@ -83,12 +111,12 @@ button, .btn {
 
 button a { text-decoration: none; color: inherit; }
 
-/* Theme toggle button (index only) */
+/* Theme toggle button */
 .theme-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #2980b9;
+    background-color: #256692;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
