@@ -5,11 +5,6 @@ from django.http import HttpResponse
 from datetime import date
 
 
-# def index(request):
-#     mytasks = Table.objects.all()
-
-#     return render(request, 'index.html', {"mytasks": mytasks, "today": today})
-# Create your views here.
 def index(request):
     mytasks = Table.objects.all().values()
     today = date.today()

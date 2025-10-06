@@ -9,16 +9,16 @@
 {% block content %}
 
     <!-- <p><a href="/">HOME</a></p> -->
-
+<div class="container">
     <h1>Update Task</h1>
       <form action = "{% url 'update_tasks' tasks.id %}" method="post">
         {% csrf_token %}
-
+  <div class="up container">
         <label>Task:</label>
         <input type = "text" name="task" value="{{tasks.task}}">
         <br><br>
 
-        <label>Status</label>
+        <label>Status:</label>
         <select name="status" id="status">
             <option value="pending" {% if tasks.status == "pending" %}selected{% endif %}>Pending</option>
             <option value="completed" {% if tasks.status == "completed" %}selected{% endif %}>Completed</option>
@@ -33,6 +33,8 @@
         <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
 
       </form>
+  </div>
+</div>
       
 
 

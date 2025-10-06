@@ -4,7 +4,7 @@
 {% block title %}Add Task{% endblock %}
 
 {% block content %}
-<div class="add_box">
+<div class="container">
     <h1>Add Tasks</h1>
     <form action="{% url 'add_tasks' %}" method="post">
         {% csrf_token %}
