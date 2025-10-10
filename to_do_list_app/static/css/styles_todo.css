@@ -1,20 +1,51 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; 
     min-height: 100vh;
-}
-
+    min-width: 100vh;
+} */
+/* 
 .container {
     text-align: center; 
     margin: 10px 0;
-    
+  
+} */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    /* text-align: center; */
+}
+
 table{
     margin: 0 auto;
 }
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+h1,p{
+    display: flex;
+    justify-content: center;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   
+}
+
+
+
 
 /* ---------------- Light Theme ---------------- */
 body.light-theme {

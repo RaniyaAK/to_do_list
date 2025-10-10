@@ -13,24 +13,32 @@
     <h1>Update Task</h1>
       <form action = "{% url 'update_tasks' tasks.id %}" method="post">
         {% csrf_token %}
-  <div class="up container">
-        <label>Task:</label>
-        <input type = "text" name="task" value="{{tasks.task}}">
-        <br><br>
 
-        <label>Status:</label>
-        <select name="status" id="status">
-            <option value="pending" {% if tasks.status == "pending" %}selected{% endif %}>Pending</option>
-            <option value="completed" {% if tasks.status == "completed" %}selected{% endif %}>Completed</option>
-        </select>
-        <br><br>
+      <div class="content container">
+          <label>Task:</label>
+          <input type = "text" name="task" value="{{tasks.task}}">
+          <br><br>
+      </div>
 
-        <label>Due Date:</label>
-        <input type = "date" name="due_date" value="{{tasks.due_date|date:'Y-m-d'}}" required min="{{ today|date:'Y-m-d' }}">
-        <br><br>
+      <div class="content container">
+          <label>Status:</label>
+          <select name="status" id="status">
+              <option value="pending" {% if tasks.status == "pending" %}selected{% endif %}>Pending</option>
+              <option value="completed" {% if tasks.status == "completed" %}selected{% endif %}>Completed</option>
+          </select>
+          <br><br>
+      </div>
 
-        <button class="update_btn" type="submit">Update</button>
-        <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
+      <div class="content container">
+          <label>Due Date:</label>
+          <input type = "date" name="due_date" value="{{tasks.due_date|date:'Y-m-d'}}" required min="{{ today|date:'Y-m-d' }}">
+          <br><br>
+      </div>
+
+      <div class="buttons container">
+            <button class="update_btn" type="submit">Update</button>
+            <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
+      </div>
 
       </form>
   </div>
