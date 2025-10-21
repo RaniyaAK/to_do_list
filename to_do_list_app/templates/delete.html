@@ -31,19 +31,20 @@
 
                 </table>
 
-                <div class="delete_box">
+<div class="dltbox">
+    <div class="confirm-box">
+        <p>Are you sure want to delete this item?</p>
 
-                    <p>Are you sure want to delete this item?</p>
+        <form method="post" action="{% url 'delete' mytasks.id %}">
+            {% csrf_token %}
+            <div class="buttons">
+                <button type="submit" class="delete_btn">Confirm</button>
+                <a href="{% url 'index' %}" class="cancel_btn btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 
-                    <form method="post" action="{% url 'delete' mytasks.id %}">
-                    {% csrf_token %}
-                    <div class="buttons container">
-                        <button type="submit" class="delete_btn">Confirm</button>
-                        <button><a href="{% url 'index' %}" class="cancel_btn">Cancel</a></button>
-                    </div>
-                    </form><br>
-
-                </div>
             
         </div>
    
